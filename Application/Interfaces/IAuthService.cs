@@ -1,5 +1,4 @@
 ﻿using AmxBookstore.Application.DTOs;
-using System.Threading.Tasks;
 
 namespace AmxBookstore.Application.Interfaces
 {
