@@ -81,6 +81,9 @@ src/
 
 • Docker
 
+• Docker-Compose
+
+
 ### Installation Instructions
 
 1. Clone the repository:
@@ -90,18 +93,13 @@ git clone https://github.com/yourusername/amxbookstore.git
 cd amxbookstore
 ```
 
-2. Build the docker image:
+2. Run the docker-compose:
 
 ```code
 cd /path/to/your/project
-docker build -t amxbookstore_image .
+docker-compose up --build
 ```
 
-3. Run the docker container:
-
-```code
-docker run -d --name amxbookstore_container amxbookstore_image
-```
 
 ## Development Steps
 
