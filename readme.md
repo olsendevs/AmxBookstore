@@ -81,7 +81,7 @@ src/
 
 • Docker
 
-• Docker-Compose
+• docker-compose
 
 
 ### Installation Instructions
@@ -96,7 +96,6 @@ cd amxbookstore
 2. Run the docker-compose:
 
 ```code
-cd /path/to/your/project
 docker-compose up --build
 ```
 
