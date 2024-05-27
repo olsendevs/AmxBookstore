@@ -10,7 +10,7 @@ using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 
-namespace AmxBookstore.API.Controllers
+namespace AmxBookstoreAPI.Controllers
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
@@ -37,10 +37,11 @@ namespace AmxBookstore.API.Controllers
                 return Unauthorized("User not authorized.");
             }
 
-            var command = new CreateUserCommand { 
-                User = userDto, 
-                UserId = Guid.Parse(userId), 
-                UserRole = userRole 
+            var command = new CreateUserCommand
+            {
+                User = userDto,
+                UserId = Guid.Parse(userId),
+                UserRole = userRole
             };
             var createdUserId = await _mediator.Send(command);
             return Ok(userId);
@@ -58,7 +59,8 @@ namespace AmxBookstore.API.Controllers
                 return Unauthorized("User not authorized.");
             }
 
-            var command = new UpdateUserCommand { 
+            var command = new UpdateUserCommand
+            {
                 User = userDto,
                 UserId = Guid.Parse(userId),
                 UserRole = userRole,
@@ -79,7 +81,8 @@ namespace AmxBookstore.API.Controllers
                 return Unauthorized("User not authorized.");
             }
 
-            var command = new DeleteUserCommand { 
+            var command = new DeleteUserCommand
+            {
                 Id = id,
                 UserId = Guid.Parse(userId),
                 UserRole = userRole,
@@ -100,7 +103,8 @@ namespace AmxBookstore.API.Controllers
                 return Unauthorized("User not authorized.");
             }
 
-            var query = new GetUserByIdQuery { 
+            var query = new GetUserByIdQuery
+            {
                 Id = id,
                 UserId = Guid.Parse(userId),
                 UserRole = userRole,
@@ -122,12 +126,12 @@ namespace AmxBookstore.API.Controllers
             }
 
             var query = new GetAllUsersQuery
-                {
-                    UserId = Guid.Parse(userId),
-                    UserRole = userRole,
-                    Page = page,
-                    Limit = limit,
-                };
+            {
+                UserId = Guid.Parse(userId),
+                UserRole = userRole,
+                Page = page,
+                Limit = limit,
+            };
             var users = await _mediator.Send(query);
             return Ok(users);
         }

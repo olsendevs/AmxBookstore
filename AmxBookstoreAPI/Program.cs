@@ -1,7 +1,7 @@
-using AmxBookstore.API.Middleware;
 using AmxBookstore.DependencyInjection;
 using AmxBookstore.Infrastructure.Identity;
 using AmxBookstore.Infrastructure.Logging;
+using AmxBookstoreAPI.Middleware;
 using AspNetCoreRateLimit;
 using Domain.Entities.Users;
 using Microsoft.AspNetCore.Identity;

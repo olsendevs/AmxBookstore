@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./AmxBookstoreAPI/Dockerfile
+    ports:
+      - "5000:8080"
+    volumes:
+      - .:/src
+      - /root/.nuget/packages
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development

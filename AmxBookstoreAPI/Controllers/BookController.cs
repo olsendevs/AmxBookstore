@@ -10,7 +10,7 @@ using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using AmxBookstore.Application.Filters;
 
-namespace AmxBookstore.API.Controllers
+namespace AmxBookstoreAPI.Controllers
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
@@ -66,11 +66,11 @@ namespace AmxBookstore.API.Controllers
         public async Task<IActionResult> GetAll([FromQuery] BookFilter filter, [FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
             var query = new GetAllBooksQuery
-                {
-                    Page = page,
-                    Limit = limit,
-                    Filter = filter
-                };
+            {
+                Page = page,
+                Limit = limit,
+                Filter = filter
+            };
             var books = await _mediator.Send(query);
             return Ok(books);
         }

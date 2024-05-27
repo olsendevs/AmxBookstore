@@ -1,4 +1,4 @@
-﻿namespace AmxBookstore.API.Middleware
+﻿namespace AmxBookstoreAPI.Middleware
 {
     public static class MiddlewareExtensions
     {

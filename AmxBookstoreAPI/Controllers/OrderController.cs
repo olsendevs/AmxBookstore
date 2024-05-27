@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using AmxBookstore.Application.Filters;
 
-namespace AmxBookstore.API.Controllers
+namespace AmxBookstoreAPI.Controllers
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
@@ -89,7 +89,7 @@ namespace AmxBookstore.API.Controllers
                 return Unauthorized("User not authorized.");
             }
 
-            var query = new GetOrderByIdQuery { Id = id , UserId = Guid.Parse(userId), UserRole = userRole };
+            var query = new GetOrderByIdQuery { Id = id, UserId = Guid.Parse(userId), UserRole = userRole };
             var order = await _mediator.Send(query);
             return Ok(order);
         }
@@ -117,7 +117,7 @@ namespace AmxBookstore.API.Controllers
 
             var orders = await _mediator.Send(query);
             return Ok(orders);
-            
+
         }
     }
 }

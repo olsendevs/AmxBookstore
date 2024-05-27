@@ -3,7 +3,7 @@ using AmxBookstore.Application.Interfaces;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AmxBookstore.API.Controllers
+namespace AmxBookstoreAPI.Controllers
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]

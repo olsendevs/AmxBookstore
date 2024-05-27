@@ -2,7 +2,7 @@
 using System.Text.Json;
 
 
-namespace AmxBookstore.API.Middleware
+namespace AmxBookstoreAPI.Middleware
 {
     public class ErrorHandlingMiddleware
     {

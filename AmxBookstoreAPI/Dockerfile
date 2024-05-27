@@ -9,6 +9,14 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["AmxBookstoreAPI/AmxBookstoreAPI.csproj", "AmxBookstoreAPI/"]
+COPY ["Application/Application.csproj", "Application/"]
+COPY ["Domain/Domain.csproj", "Domain/"]
+COPY ["DependencyInjection/DependencyInjection.csproj", "DependencyInjection/"]
+COPY ["EventStore/EventStore.csproj", "EventStore/"]
+COPY ["Identity/Identity.csproj", "Identity/"]
+COPY ["Logging/Logging.csproj", "Logging/"]
+COPY ["Persistence/Persistence.csproj", "Persistence/"]
+COPY ["Repositories/Repositories.csproj", "Repositories/"]
 RUN dotnet restore "./AmxBookstoreAPI/AmxBookstoreAPI.csproj"
 COPY . .
 WORKDIR "/src/AmxBookstoreAPI"

@@ -10,7 +10,7 @@ using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using AmxBookstore.Application.UseCases.Stocks.Queries.GetStockByProductId;
 
-namespace AmxBookstore.API.Controllers
+namespace AmxBookstoreAPI.Controllers
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
@@ -75,10 +75,10 @@ namespace AmxBookstore.API.Controllers
         public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
             var query = new GetAllStocksQuery
-                {
-                    Page = page,
-                    Limit = limit,
-                }; 
+            {
+                Page = page,
+                Limit = limit,
+            };
             var stocks = await _mediator.Send(query);
             return Ok(stocks);
         }
