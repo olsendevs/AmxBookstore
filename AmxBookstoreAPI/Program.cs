@@ -1,23 +1,71 @@
+using AmxBookstore.API.Middleware;
+using AmxBookstore.DependencyInjection;
+using AmxBookstore.Infrastructure.Identity;
+using AmxBookstore.Infrastructure.Logging;
+using AspNetCoreRateLimit;
+using Domain.Entities.Users;
+using Microsoft.AspNetCore.Identity;
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+LoggingConfiguration.ConfigureLogging(builder.Configuration);
+
+builder.Host.UseSerilog();
+
+builder.Services.AddSerilogLogging();
+
+builder.Services.AddProjectServices(builder.Configuration);
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
 
-app.UseAuthorization();
+app.UseCors("AllowAll");
 
+app.UseIpRateLimiting();
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "AmxBookstore API V1");
+});
+
+app.UseSerilogRequestLogging();
+app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 
+app.UseErrorHandlingMiddleware();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+    var userManager = services.GetRequiredService<UserManager<User>>();
+    RoleInitializer.InitializeAsync(roleManager, userManager).Wait();
+}
+
 app.Run();
+
+public partial class Program { }

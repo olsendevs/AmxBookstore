@@ -22,15 +22,14 @@ using Asp.Versioning;
 using AmxBookstore.Application.Models;
 using Polly;
 using Polly.Extensions.Http;
-using System.Net.Http;
 using AspNetCoreRateLimit;
-using System;
 using Polly.Retry;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Data.Common;
+using AmxBookstore.Infrastructure.EventStore;
 using Shared;
 
-namespace AmxBookstore.Shared.DependencyInjection
+namespace AmxBookstore.DependencyInjection
 {
     public static class DependencyInjection
     {
@@ -51,6 +50,7 @@ namespace AmxBookstore.Shared.DependencyInjection
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IStockRepository, StockRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IEventStoreRepository, InMemoryEventStoreRepository>();
 
             services.AddScoped<IAuthService, AuthService>();
 
