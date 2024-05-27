@@ -1,0 +1,6 @@
+@AmxBookstoreAPI_HostAddress = http://localhost:5118
+
+GET {{AmxBookstoreAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
