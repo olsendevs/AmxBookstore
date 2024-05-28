@@ -177,7 +177,7 @@ Conclusion:
 
 • The product must exist to create stock.
 
-### Stock
+### User
 
 • Only allow creation and updating of client users by the seller.
 
