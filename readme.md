@@ -75,7 +75,6 @@ src/
 ## Project Setup
 
 #### Prerequisites
-• .NET Core 8 SDK
 
 • Git
 
